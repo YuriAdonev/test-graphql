@@ -1,4 +1,5 @@
 const PhotographersListItemSlider = ({ sliderData, user }) => {
+
   const images = sliderData.map((photo, index) => {
     return (
       <li
@@ -13,9 +14,9 @@ const PhotographersListItemSlider = ({ sliderData, user }) => {
         >
           <img
             data-src={photo.googleUrl}
-            src={photo.googleUrl}
+            src=""
             alt="${this._translations.jobTitleColon}${name} ${surname} (${this._catalogItem.login}). ${this._translations.photoOf}${this._parseDate(photo.addDate)}"
-            className="format-39 smallImg lazy-load-blazy photographer-list-item-photo"
+            className="format-39 smallImg lazy-load-blazy photographers-list-item__photo"
             itemProp="image"
           />
         </a>
