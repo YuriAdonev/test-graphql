@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import PhotographersListItemSlider from "./PhotographersListItemSlider";
 
 const PhotographersListItem = (props) => {
   const [avatarHrefs, setAvatarHrefs] = useState({ mobile: '', desktop: '' })
@@ -48,17 +49,13 @@ const PhotographersListItem = (props) => {
                   >
                     <svg baseProfile="full" version="1.2" style={{width: '45px', height: '45px'}}>
                       <image
-                        className="smallUserpic"
+                        className="smallUserpic pic-big format-40"
                         mask="url(#userpicmask-45)"
                         y="0" x="0"
                         width="45" height="45"
-                        id="user_pic_${user.id}"
-                        alt="${name} ${surname} (${this._catalogItem.login})"
-                        data-userpic="${user.userpicUrl ? user.userpicUrl : '/images/userpic/logo.svg'}"
-                        data-userpic-size="45"
+                        alt={`${photographer.name} ${photographer.surname} (${photographer.login})`}
                         xlinkHref={avatarHrefs.mobile}
-                        style={{width: '45px', height: '45px'}}
-                        className="pic-big format-40"/>
+                      />
                     </svg>
                   </a>
                 </div>
@@ -119,10 +116,9 @@ const PhotographersListItem = (props) => {
                       mask="url(#userpicmask-200)"
                       y="0" x="0"
                       width="200" height="200"
-                      id="user_pic_${user.id}"
-                      alt="${name} ${surname} (${this._catalogItem.login})"
+                      alt={`${photographer.name} ${photographer.surname} (${photographer.login})`}
                       xlinkHref={avatarHrefs.desktop}
-                      style={{width: '200px', height: '200px'}}/>
+                    />
                   </svg>
                 </a>
               </div>
@@ -139,24 +135,15 @@ const PhotographersListItem = (props) => {
 
           </div>
           <div className="filter-long-col">
-            <div className="photos-wrap">
+            <PhotographersListItemSlider
+              sliderData={photographer.catalogPhotos}
+              user={{
+                name: photographer.name,
+                surname: photographer.surname,
+                login: photographer.login
+              }}
+            />
 
-              <div data-id="{{index}}" className="photos-wrap-arrows photos-wrap-arrows__left"/>
-              <div data-id="{{index}}" className="photos-wrap-arrows photos-wrap-arrows__right"/>
-
-              <ul data-current-photo="0" data-number-photos="4" className="photos" style={{marginLeft: '0px'}}>
-                {/*{this._getPhotosTemplate()}*/}
-              </ul>
-
-            </div>
-            <div className="photos_thumb_wrap">
-              <div className="thumb_list" data-id="{{index}}">
-                <div className="thumb_item active"></div>
-                <div className="thumb_item"></div>
-                <div className="thumb_item"></div>
-                <div className="thumb_item"></div>
-              </div>
-            </div>
             {photographer.hasAbout && (
               <div className="author-text-wrap">
                 <div className="text-author">
