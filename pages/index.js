@@ -1,209 +1,264 @@
-import Head from 'next/head'
+import Head from "next/head"
+import PhotographersList from "../components/photographers/PhotographersList"
 
-export default function Home() {
+const Home = (props) => {
+  const {
+    catalogStats,
+    catalogData
+  } = props
+
   return (
-    <div className="container">
+    <>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{catalogStats.metaData.title}</title>
       </Head>
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
+        <h1>{catalogStats.metaData.h1}</h1>
+        <p>linksTop</p>
+        <p>filters</p>
+        <PhotographersList catalogData={catalogData} />
+        <p>pagination</p>
+        <p>rating</p>
+        <p>linksBottom</p>
+    </>
   )
 }
+
+export async function getServerSideProps() {
+  const queryStr = `
+      {
+        catalogStats(
+          type: POPULAR
+          filter: {
+            langId: null
+            pageLangId: 7
+            gp: null
+            countryId: null
+            userRole: PHOTOGRAPHER
+            categoryId: 1
+            currentPage: 0
+        }) {
+          catalogCount
+          pageRating {
+            avg
+            count
+          }
+          pageRatingByUser {
+            value
+          }
+          languages {
+            id
+            name
+            count
+          }
+          nearestPlacesTop {
+            id
+            city: nameRu
+            country: countryRu
+            cityEn: nameEn
+            countryEn
+            path
+          }
+          nearestPlacesBottom {
+            id
+            city: nameRu
+            country: countryRu
+            cityEn: nameEn
+            countryEn
+            path
+          }
+          countsCurrentPlaceByCategory {
+            cityId: googlePlaceId
+            countryId
+            categoryId
+            countPhotographers
+            countVideographers
+            countTravelPhotographers
+            countTravelVideographers
+          }
+          budget
+          countPhotographersBudget
+          countsCurrentCountryByCategory {
+            cityId: googlePlaceId
+            countryId
+            categoryId
+            countPhotographers
+            countVideographers
+            countTravelPhotographers
+            countTravelVideographers
+          }
+          countsNearestPlacesBottom {
+            cityId: googlePlaceId
+            countryId
+            categoryId
+            countPhotographers
+            countVideographers
+          }
+          countsPopularCountriesBottom {
+            cityId: googlePlaceId
+            countryId
+            categoryId
+            countPhotographers
+            countVideographers
+          }
+          countsPopularPlacesBottom {
+            cityId: googlePlaceId
+            countryId
+            categoryId
+            countPhotographers
+            countVideographers
+          }
+          popularPlacesTop {
+            id
+            city: nameRu
+            country: countryRu
+            cityEn: nameEn
+            countryEn
+            path
+          }
+          popularPlacesBottom {
+            id
+            city: nameRu
+            country: countryRu
+            cityEn: nameEn
+            countryEn
+            path
+          }
+          popularCountriesTop {
+            id: countryId
+            country: ru
+            countryEn: slug
+          }
+          popularCountriesBottom {
+            id: countryId
+            country: ru
+            countryEn: slug
+          }
+          seoTextData {
+            text
+            data
+          }
+          metaData {
+            h1
+            title
+            backToCountry
+          }
+          payedPlaces {
+            id
+            name
+            surname
+            login
+            paidTo
+            userpicUrl
+            mywedGooglePlace {
+              city: nameRu
+            }
+            secondaryGooglePlace {
+              city: nameRu
+            }
+          }
+          country {
+            id
+            countryWordForms {
+              createdAt
+              updatedAt
+              base
+              firstForm
+              secondForm
+              language {
+                id
+                nameEn
+              }
+            }
+          }
+          mywedGooglePlace {
+            id
+            gpWordForms {
+              createdAt
+              updatedAt
+              lang
+              base
+              firstForm
+              secondForm
+            }
+          }
+        }
+        catalog(
+          type: POPULAR
+          filter: {
+              langId: null
+              pageLangId: 7
+              gp: null
+              countryId: null
+              userRole: PHOTOGRAPHER
+              categoryId: 1
+          }
+          paging: {
+              pageNumber: 0
+              pageSize: 30
+          }
+        ){
+          id
+          name
+          surname
+          userpicUrl
+          mobileParse
+          login
+          proTo
+          lastVisit
+          hasPro
+          isOnline
+          userCategories {
+            category {
+              id
+            }
+            costServicesUsd
+          }
+          mywedGooglePlace {
+            id
+            countryRu
+            nameRu
+            lat
+            lng
+          }
+          secondaryGooglePlace {
+            id
+          }
+          catalogPhotos {
+            googleUrl
+            addDate
+          }
+          userLanguages {
+            id
+            about
+            status
+            language {
+              id
+            }
+          }
+          favoriteByCurrentUser
+        }
+      }`
+  const response = await fetch('https://api.mywed.com/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Host': 'api.mywed.com',
+      'Cookie': '_ym_uid=1590127062211189017; _ym_d=1590127062; _ga=GA1.2.380349839.1590127062; _fbp=fb.1.1590127063135.1860465467; whatiscountry=RU; current_currency=USD; retina=1; rememberMe=cGhvdG9saWFuOjE2MDc1MDU1MjA6NzgzODcxMzhhYzFiNGJiNTg1MzgyYmYzZWRjZDI3YjQ%3D; detectMobile=0; detectTablet=0; _gid=GA1.2.9358360.1595717652; _ym_isad=2; SESSID=5006fh5oldgan8uc8kp56mpe74; current_screen_width=1440; current_screen_height=900; _gat=1',
+      'Origin': 'https://mywed.com',
+      'Pragma': 'no-cache',
+      'Referer': 'https://mywed.com/ru/photographers/'
+    },
+    body: JSON.stringify({query: queryStr})
+  })
+  const respJson = await response.json()
+
+  return { props: {
+      catalogStats: respJson.data.catalogStats,
+      catalogData: respJson.data.catalog
+    }
+  }
+}
+
+export default Home

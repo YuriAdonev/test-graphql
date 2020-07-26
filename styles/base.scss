@@ -1,0 +1,29 @@
+html {
+  min-height: 100vh;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  font: normal 16px/20px PT Sans,Verdana,Geneva,sans-serif;
+  color: #343434;
+  background: #fff;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.svg-masks {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
