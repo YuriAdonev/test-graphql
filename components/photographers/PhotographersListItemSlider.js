@@ -14,7 +14,7 @@ const PhotographersListItemSlider = ({ sliderData, user }) => {
         >
           <img
             data-src={photo.googleUrl}
-            src=""
+            src={photo.googleUrl}
             alt="${this._translations.jobTitleColon}${name} ${surname} (${this._catalogItem.login}). ${this._translations.photoOf}${this._parseDate(photo.addDate)}"
             className="format-39 smallImg lazy-load-blazy photographers-list-item__photo"
             itemProp="image"
