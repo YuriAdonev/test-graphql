@@ -15,12 +15,15 @@ const PhotographersListItem = (props) => {
     }
 
     if (document.body.offsetWidth < 760) {
-
+      setAvatarHrefs({
+        mobile: `${photographer.userpicUrl}=w${45*devicePixelRatio}-h${45*devicePixelRatio}-l90-c`,
+        desktop: ''
+      })
     } else {
-      // setAvatarHrefs({
-      //   mobile: '',
-      //   desktop: `${photographer.userpicUrl}=w${200*devicePixelRatio}-h${200*devicePixelRatio}-l90-c`
-      // })
+      setAvatarHrefs({
+        mobile: '',
+        desktop: `${photographer.userpicUrl}=w${200*devicePixelRatio}-h${200*devicePixelRatio}-l90-c`
+      })
     }
 
   }, [])
