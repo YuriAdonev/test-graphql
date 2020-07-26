@@ -4,12 +4,19 @@ import PhotographersListItem from "./PhotographersListItem";
 const PhotographersList = ({ catalogData }) => {
 
   useEffect(() => {
+    document.addEventListener('DOMContentLoaded', changeImageSrc)
+    return () => {
+      document.removeEventListener('DOMContentLoaded', changeImageSrc)
+    }
+  }, [])
+
+  const changeImageSrc = () => {
     const catalog = document.querySelector('.photographers-list')
     catalog.querySelectorAll('[data-src]').forEach(item => {
       setPreview(item, item.getAttribute('data-src'))
       item.removeAttribute('data-src')
     })
-  }, [])
+  }
 
   const setPreview = (preview, url) => {
     let devicePixelRatio = 1
