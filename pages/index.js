@@ -8,19 +8,19 @@ const Home = (props) => {
   } = props
 
   return (
-    <>
+    <div className="photographers">
       <Head>
         <title>{catalogStats.metaData.title}</title>
       </Head>
 
-        <h1>{catalogStats.metaData.h1}</h1>
-        <p>linksTop</p>
-        <p>filters</p>
-        <PhotographersList catalogData={catalogData} />
-        <p>pagination</p>
-        <p>rating</p>
-        <p>linksBottom</p>
-    </>
+      <h1 className="photographers__title">{catalogStats.metaData.h1}</h1>
+      <p>linksTop</p>
+      <p>filters</p>
+      <PhotographersList catalogData={catalogData} />
+      <p>pagination</p>
+      <p>rating</p>
+      <p>linksBottom</p>
+    </div>
   )
 }
 

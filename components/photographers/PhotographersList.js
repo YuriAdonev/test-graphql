@@ -17,7 +17,7 @@ const PhotographersList = ({ catalogData }) => {
       <ul className="photographers-list">
         {catalogItems}
       </ul>
-      <pre>{JSON.stringify(catalogData, null, 2)}</pre>
+      {/*<pre>{JSON.stringify(catalogData, null, 2)}</pre>*/}
     </div>
   )
 }

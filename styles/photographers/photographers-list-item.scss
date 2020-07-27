@@ -1,0 +1,69 @@
+.photographers-list-item {
+  list-style: none;
+  margin: 0;
+  padding: 18px 0 28px;
+
+  @media (min-width: 760px) {
+    padding-top: 25px;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    width: 100%;
+    display: block;
+    float: none;
+    clear: both;
+  }
+
+  .filter-rusult-head {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 15px 11px;
+
+    @media (min-width: 760px) {
+      padding: 0 0 11px;
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      width: 100%;
+      display: block;
+      float: none;
+      clear: both;
+    }
+  }
+
+  .title-author {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    white-space: nowrap;
+    float: left;
+
+    @media (min-width: 760px) {
+      width: 680px;
+    }
+    @media (min-width: 1200px) {
+      width: auto;
+    }
+
+    :before,
+    :after {
+      content: "";
+      width: 100%;
+      display: block;
+      float: none;
+      clear: both;
+
+      @media (min-width: 1200px) {
+        display: table;
+        line-height: 0;
+        content: "";
+      }
+    }
+  }
+}

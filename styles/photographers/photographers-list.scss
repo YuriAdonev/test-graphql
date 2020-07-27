@@ -1,0 +1,12 @@
+.photographers-list {
+  display: block;
+  padding: 0;
+  margin: 10px 0 30px;
+
+  list-style: none;
+  overflow: hidden;
+
+  @media (min-width: 760px) {
+    overflow: visible;
+  }
+}
