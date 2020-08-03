@@ -246,7 +246,7 @@ export async function getServerSideProps(ctx) {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Host': 'api.mywed.com',
-      'Cookie': '_ym_uid=1590127062211189017; _ym_d=1590127062; _ga=GA1.2.380349839.1590127062; _fbp=fb.1.1590127063135.1860465467; current_currency=USD; retina=1; _gid=GA1.2.486542917.1596030844; whatiscountry=RU; current_screen_width=1440; current_screen_height=900; detectMobile=0; detectTablet=0; rememberMe=cGhvdG9saWFuOjE2MDg1NTEwMTQ6MWU5YzA2MDg2NmMyZTFhNGExNmUwNjJkZDUwYjU3ODA%3D',
+      'Cookie': '_ym_uid=1590127062211189017; _ym_d=1590127062; _ga=GA1.2.380349839.1590127062; _fbp=fb.1.1590127063135.1860465467; current_currency=USD; retina=1; _gid=GA1.2.486542917.1596030844; whatiscountry=RU; current_screen_width=1440; current_screen_height=900; detectMobile=0; detectTablet=0; rememberMe=cGhvdG9saWFuOjE2MDg1NTEwMTQ6MWU5YzA2MDg2NmMyZTFhNGExNmUwNjJkZDUwYjU3ODA%3D; SESSID=rpl1kp7h9shmhv4s6qlrc1rt01; _gat=1; _ym_visorc_22909075=w; _ym_isad=2',
       'Origin': 'https://mywed.com',
       'Pragma': 'no-cache',
       'Referer': 'https://mywed.com/ru/photographers/'
