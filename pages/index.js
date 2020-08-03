@@ -7,6 +7,7 @@ const Home = (props) => {
     catalogData
   } = props
 
+  // console.log('req', req);
   return (
     <div className="photographers">
       <Head>
@@ -24,7 +25,7 @@ const Home = (props) => {
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
   const queryStr = `
       {
         catalogStats(
@@ -245,7 +246,7 @@ export async function getServerSideProps() {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Host': 'api.mywed.com',
-      'Cookie': '_ym_uid=1590127062211189017; _ym_d=1590127062; _ga=GA1.2.380349839.1590127062; _fbp=fb.1.1590127063135.1860465467; whatiscountry=RU; current_currency=USD; retina=1; rememberMe=cGhvdG9saWFuOjE2MDc1MDU1MjA6NzgzODcxMzhhYzFiNGJiNTg1MzgyYmYzZWRjZDI3YjQ%3D; detectMobile=0; detectTablet=0; _gid=GA1.2.9358360.1595717652; _ym_isad=2; SESSID=5006fh5oldgan8uc8kp56mpe74; current_screen_width=1440; current_screen_height=900; _gat=1',
+      'Cookie': '_ym_uid=1590127062211189017; _ym_d=1590127062; _ga=GA1.2.380349839.1590127062; _fbp=fb.1.1590127063135.1860465467; current_currency=USD; retina=1; _gid=GA1.2.486542917.1596030844; whatiscountry=RU; current_screen_width=1440; current_screen_height=900; detectMobile=0; detectTablet=0; rememberMe=cGhvdG9saWFuOjE2MDg1NTEwMTQ6MWU5YzA2MDg2NmMyZTFhNGExNmUwNjJkZDUwYjU3ODA%3D',
       'Origin': 'https://mywed.com',
       'Pragma': 'no-cache',
       'Referer': 'https://mywed.com/ru/photographers/'
@@ -253,7 +254,9 @@ export async function getServerSideProps() {
     body: JSON.stringify({query: queryStr})
   })
   const respJson = await response.json()
+  console.log('req', ctx.req);
 
+  // const req = JSON.stringify(ctx.req)
   return { props: {
       catalogStats: respJson.data.catalogStats,
       catalogData: respJson.data.catalog
